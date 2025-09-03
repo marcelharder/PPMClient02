@@ -1,0 +1,43 @@
+<form #valveDataForm="ngForm" (ngSubmit)="onSubmit(valveDataForm)">
+  <div class="container mt-5">
+    <div class="card">
+      <div class="card-header" style="background-color: beige;"><h4>Calculated EOA = 2 cm</h4></div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-2">Select Vendor</div>
+          <div class="col-sm-10">
+            <select class="form-control" name="vendors" [(ngModel)]="selectedOption">
+                <option *ngFor="let option of options" [value]="option.id"> {{ option.name }} </option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-2">Select Type</div>
+          <div class="col-sm-10">
+            <select class="form-control" name="valveType" [(ngModel)]="selectedTypeOption">
+                <option *ngFor="let option of ValveTypes" [value]="option">{{ option }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer" style="background-color: beige; text-align: center;">
+        <button type="submit" class="btn btn-primary" style="width: 80%;">Submit</button>
+    </div>
+   
+    <div class="btn-group" dropdown>
+  <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+    Dropdown <span class="caret"></span>
+  </button>
+  <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+    <li role="menuitem"><a class="dropdown-item" href="#">Action 1</a></li>
+    <li role="menuitem"><a class="dropdown-item" href="#">Action 2</a></li>
+    <li role="menuitem"><a class="dropdown-item" href="#">Action 3</a></li>
+  </ul>
+
+
+
+</div>
+
+    </div>
+  </div>
+
