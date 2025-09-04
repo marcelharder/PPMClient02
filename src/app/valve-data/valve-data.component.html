@@ -1,21 +1,21 @@
-<form #valveDataForm="ngForm" (ngSubmit)="onSubmit(valveDataForm)">
+<form #valveDataForm="ngForm" (ngSubmit)="onSubmit()">
   <div class="container mt-5">
     <div class="card">
-      <div class="card-header" style="background-color: beige;"><h4>Calculated EOA = 2 cm</h4></div>
+      <div class="card-header" style="background-color: beige;"><h4>Anulus diameter = 2 cm</h4></div>
       <div class="card-body">
         <div class="row">
           <div class="col-sm-2">Select Vendor</div>
           <div class="col-sm-10">
-            <select class="form-control" name="vendors" [(ngModel)]="selectedOption">
-                <option *ngFor="let option of options" [value]="option.id"> {{ option.name }} </option>
+            <select class="form-control" name="vendors" [(ngModel)]="selectedVendor">
+                <option *ngFor="let option of vendors" [value]="option.value"> {{ option.description }} </option>
             </select>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-2">Select Type</div>
           <div class="col-sm-10">
-            <select class="form-control" name="valveType" [(ngModel)]="selectedTypeOption">
-                <option *ngFor="let option of ValveTypes" [value]="option">{{ option }}</option>
+            <select class="form-control" name="valveType" [(ngModel)]="selectedValveType">
+                <option *ngFor="let option of ValveTypes" [value]="option.value">{{ option.description }}</option>
             </select>
           </div>
         </div>
