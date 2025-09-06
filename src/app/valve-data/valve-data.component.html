@@ -6,7 +6,7 @@
         <div class="row">
           <div class="col-sm-2">Select Vendor</div>
           <div class="col-sm-10">
-            <select class="form-control" name="vendors" [(ngModel)]="selectedVendor">
+            <select class="form-control" name="vendors" [(ngModel)]="selectedVendor" id="vendors">
                 <option *ngFor="let option of vendors" [value]="option.Value"> {{ option.Description }} </option>
             </select>
           </div>
@@ -14,30 +14,28 @@
         <div class="row">
           <div class="col-sm-2">Select Type</div>
           <div class="col-sm-10">
-            <select class="form-control" name="valveType" [(ngModel)]="selectedValveType">
-                <option *ngFor="let option of ValveTypes" [value]="option.value">{{ option.description }}</option>
+            <select class="form-control" name="valveType" [(ngModel)]="selectedValveType" id="valveType">
+                <option *ngFor="let option of ValveTypes" [value]="option.Value">{{ option.Description }}</option>
             </select>
           </div>
         </div>
       </div>
       <div class="card-footer" style="background-color: beige; text-align: center;">
         <button type="submit" class="btn btn-primary" style="width: 80%;">Submit</button>
-    </div>
-   
-    <div class="btn-group" dropdown>
-  <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
-    Dropdown <span class="caret"></span>
-  </button>
-  <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
-    <li role="menuitem"><a class="dropdown-item" href="#">Action 1</a></li>
-    <li role="menuitem"><a class="dropdown-item" href="#">Action 2</a></li>
-    <li role="menuitem"><a class="dropdown-item" href="#">Action 3</a></li>
-  </ul>
-
-
-
-</div>
-
+      </div>
+      <!-- Dropdown example (commented out) -->
+      <!--
+      <div class="btn-group" dropdown>
+        <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+          Dropdown <span class="caret"></span>
+        </button>
+        <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+          <li role="menuitem"><a class="dropdown-item" href="#">Action 1</a></li>
+          <li role="menuitem"><a class="dropdown-item" href="#">Action 2</a></li>
+          <li role="menuitem"><a class="dropdown-item" href="#">Action 3</a></li>
+        </ul>
+      </div>
+      -->
     </div>
   </div>
-
+</form>

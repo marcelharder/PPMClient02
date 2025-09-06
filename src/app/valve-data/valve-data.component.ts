@@ -24,10 +24,10 @@ selectedVendor: DropItem = {Value: 0, Description: 'Choose'};
 vendors: DropItem[] = []
 selectedValves: TypeOfValve[] = [] 
 
-ValveTypes = [
-  { value: 0, description: 'Choose' },
-  { value: 1, description: 'Mechanical' },
-  { value: 2, description: 'Biological' }];
+ValveTypes: DropItem[] = [
+  { Value: 0, Description: 'Choose' },
+  { Value: 1, Description: 'Mechanical' },
+  { Value: 2, Description: 'Biological' }];
 
 ngOnInit(): void {
   this.loadDrops();
