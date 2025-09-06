@@ -19,8 +19,8 @@ export class ValveDataComponent implements OnInit {
 router = inject(Router);
 drops = inject(dropDownService);
 proc = inject(ProductService);
-selectedValveType: DropItem = {value: 0, description: 'Choose'};
-selectedVendor: DropItem = {value: 0, description: 'Choose'}; 
+selectedValveType: DropItem = {Value: 0, Description: 'Choose'};
+selectedVendor: DropItem = {Value: 0, Description: 'Choose'}; 
 vendors: DropItem[] = []
 selectedValves: TypeOfValve[] = [] 
 
@@ -35,16 +35,16 @@ ngOnInit(): void {
 
 loadDrops(){
   this.drops.getCompanyOptions().subscribe({
-    next: (response) => this.vendors = response as DropItem[],
+    next: (response) => {this.vendors = response as DropItem[]},
     error: (error) => console.log(error)
   });
-  this.vendors = this.vendors.sort((a, b) => a.description.localeCompare(b.description));
-  this.vendors.unshift({value: 0, description: 'Choose'});
+  this.vendors = this.vendors.sort((a, b) => a.Description.localeCompare(b.Description));
+  this.vendors.unshift({Value: 0, Description: 'Choose'});
 }
 
 onSubmit() {
 // ik wil de vendor en bio/mech valves hier ophalen, zodat ik een list van valves kan tonen
-  this.proc.getProductsByVTP(this.selectedValveType.value,this.selectedVendor.value.toString(),'Aortic').subscribe({
+  this.proc.getProductsByVTP(this.selectedValveType.Value,this.selectedVendor.Value.toString(),'Aortic').subscribe({
     next: (response) => this.selectedValves = response as TypeOfValve[],
     error: (error) => console.log(error),
     complete: () => this.router.navigate(['/valveList'])
