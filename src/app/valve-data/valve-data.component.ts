@@ -1,6 +1,6 @@
 import { NgFor } from '@angular/common';
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormsModule} from '@angular/forms';
 import { Router } from '@angular/router';
 import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
 import { DropItem } from '../_models/dropItem';
