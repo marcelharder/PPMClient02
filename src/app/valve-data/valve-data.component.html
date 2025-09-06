@@ -6,16 +6,16 @@
         <div class="row">
           <div class="col-sm-2">Select Vendor</div>
           <div class="col-sm-10">
-            <select class="form-control" name="vendors" [(ngModel)]="selectedVendor" id="vendors">
-                <option *ngFor="let option of vendors" [value]="option.Value"> {{ option.Description }} </option>
+            <select class="form-control" name="ven" [(ngModel)]="selectedVendor" id="vend">
+                <option *ngFor="let option of vendors" [ngValue]="option"> {{ option.Description }} </option>
             </select>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-2">Select Type</div>
           <div class="col-sm-10">
-            <select class="form-control" name="valveType" [(ngModel)]="selectedValveType" id="valveType">
-                <option *ngFor="let option of ValveTypes" [value]="option.Value">{{ option.Description }}</option>
+            <select class="form-control" name="vtp" [(ngModel)]="selectedValveType" id="vtp">
+                <option *ngFor="let option of ValveTypes" [ngValue]="option"> {{ option.Description }} </option>
             </select>
           </div>
         </div>

@@ -1,8 +1,9 @@
-import { NgFor } from '@angular/common';
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { CommonModule, NgFor } from '@angular/common';
+import { Component, inject, OnInit, signal, Type } from '@angular/core';
 import { FormsModule} from '@angular/forms';
 import { Router } from '@angular/router';
 import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
+
 import { DropItem } from '../_models/dropItem';
 import { dropDownService } from '../_services/dropDown.service';
 import { ProductService } from '../_services/product.service';
@@ -11,7 +12,7 @@ import { TypeOfValve } from '../_models/TypeOfValve';
 @Component({
   selector: 'app-valve-data',
   standalone: true,
-  imports: [FormsModule,BsDropdownModule, NgFor],
+  imports: [CommonModule,FormsModule,BsDropdownModule, NgFor],
   templateUrl: './valve-data.component.html',
   styleUrl: './valve-data.component.css'
 })
@@ -23,6 +24,7 @@ selectedValveType: DropItem = {Value: 0, Description: 'Choose'};
 selectedVendor: DropItem = {Value: 0, Description: 'Choose'}; 
 vendors: DropItem[] = []
 selectedValves: TypeOfValve[] = [] 
+valveList = signal<TypeOfValve[]>([]);
 
 ValveTypes: DropItem[] = [
   { Value: 0, Description: 'Choose' },
@@ -44,12 +46,14 @@ loadDrops(){
 
 onSubmit() {
 // ik wil de vendor en bio/mech valves hier ophalen, zodat ik een list van valves kan tonen
-  this.proc.getProductsByVTP(this.selectedValveType.Value,this.selectedVendor.Value.toString(),'Aortic').subscribe({
-    next: (response) => this.selectedValves = response as TypeOfValve[],
-    error: (error) => console.log(error),
-    complete: () => this.router.navigate(['/valveList'])
-  });
-const valveList = signal(this.selectedValves);
-console.log(valveList());
+this.proc.getProductsByVTP(this.selectedVendor.Value,this.selectedValveType.Description,'Aortic').subscribe({
+  next: (response) => {
+    this.selectedValves = response as TypeOfValve[];
+    this.valveList.set(this.selectedValves);
+    console.log(this.valveList());
+  },
+  error: (error) => console.log(error),
+  complete: () => this.router.navigate(['/valveList'])
+});
 };
 }
