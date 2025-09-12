@@ -2,5 +2,21 @@
   <div class="container mt-5">
     <div class="card">
       <div class="card-header" style="background-color: beige;"><h4>Selected valves</h4></div>
+      <div class="card-body">
+
+        <div *ngFor="let item of valvel()" class="mb-3">
+          <!-- Render item content here, e.g.: -->
+           <div class="card" (click)="getDetails(item)">
+            <div class="card-body">
+            {{ item.Description }}
+            </div>
+           </div>
+         
+        </div>
+       
+        <button type="submit" class="btn btn-primary" (click)="Cancel()">Back</button>
+      </div>
+      <div class="card-footer"></div>
 </div>
 </div>
+</form>
