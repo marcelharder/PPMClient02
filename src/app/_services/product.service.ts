@@ -14,18 +14,25 @@ export class ProductService {
     http = inject(HttpClient);
     valveList = signal<TypeOfValve[]>([]);
     getSelectedValveTypeId = signal(0);
-    valveSizeList= signal<valveSize[]>([]);
-  
-    
+    valveSizeList = signal<valveSize[]>([]);
 
-    getProductsByVTP(v:number,t:string,p:string): Observable<TypeOfValve[]> 
-    { return this.http.get<TypeOfValve[]>(this.baseUrl + 'productsByVTP/' + v + '/' + t + '/' + p);
+
+
+    getProductsByVTP(v: number, t: string, p: string): Observable<TypeOfValve[]> {
+        return this.http.get<TypeOfValve[]>(this.baseUrl + 'productsByVTP/' + v + '/' + t + '/' + p);
     }
-    getValveSizes(): Observable<valveSize[]>{
+    getValveSizes(): Observable<valveSize[]> {
         return this.http.get<valveSize[]>(this.baseUrl + 'valveSizes');
     }
+    getListOfValveSizes(id: number) {
+        this.http.get<valveSize[]>(this.baseUrl + 'valveSizesByTypeOfValveId/' + id).subscribe({
+            next: response => {
+                this.valveSizeList.set(response);
+            },
+            error: error => {
+                console.log(error);
+            }
+        });
 
-
-
-    
+    }
 }
