@@ -13,26 +13,27 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './valve-list.component.html',
   styleUrl: './valve-list.component.css'
 })
-export class ValveListComponent implements OnInit   {
+export class ValveListComponent implements OnInit {
   constructor(private toastr: ToastrService) { }
   selectedValve: TypeOfValve = {} as TypeOfValve;
   valvel = signal<TypeOfValve[]>([]);
   proc = inject(ProductService);
-   router = inject(Router);
-  
+  router = inject(Router);
+
   ngOnInit(): void {
-  
+
     this.valvel = this.proc.valveList;
     console.log(this.valvel());
   }
-  
-  onSubmit() {}
 
-  Cancel(){this.router.navigate(['/valve-data'])}
+  onSubmit() { }
+
+  Cancel() { this.router.navigate(['/valve-data']) }
 
   getDetails(v: TypeOfValve) {
-
-     this.toastr.error('this valve selected ...', 'Error');
+    debugger;
+    this.router.navigate(['/valve-sizes']);
+    this.proc.selectedValveTypeId.set(v.ValveTypeId);
   }
 
 }

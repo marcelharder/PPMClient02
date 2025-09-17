@@ -13,8 +13,8 @@ export class ProductService {
     private baseUrl = environment.apiUrl;
     http = inject(HttpClient);
     valveList = signal<TypeOfValve[]>([]);
-    getSelectedValveTypeId = signal(0);
-    valveSizeList = signal<valveSize[]>([]);
+    selectedValveTypeId = signal(0);
+   
 
 
 
@@ -24,15 +24,8 @@ export class ProductService {
     getValveSizes(): Observable<valveSize[]> {
         return this.http.get<valveSize[]>(this.baseUrl + 'valveSizes');
     }
-    getListOfValveSizes(id: number) {
-        this.http.get<valveSize[]>(this.baseUrl + 'valveSizesByTypeOfValveId/' + id).subscribe({
-            next: response => {
-                this.valveSizeList.set(response);
-            },
-            error: error => {
-                console.log(error);
-            }
-        });
+    getListOfValveSizes(id: number):Observable<valveSize[]> {
+        return this.http.get<valveSize[]>(this.baseUrl + 'valveSizesByTypeOfValveId/' + id)
+        };
 
     }
-}

@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { ValveSizesComponent } from './valve-sizes/valve-sizes.component';
 
 export const routes: Routes = [
   {
@@ -15,5 +16,6 @@ export const routes: Routes = [
     path: 'valveList',
     loadComponent: () =>
       import('./valve-list/valve-list.component').then(m => m.ValveListComponent)
-  }
+  },
+  { path: 'valve-sizes', component: ValveSizesComponent },
 ];

@@ -1,7 +1,7 @@
 import { valveSize } from "./valveSize";
 
 export interface TypeOfValve {
-    ValveTypeID: number;
+    ValveTypeId: number;
     No: number;
     uk_code: string;
     us_code: string;
