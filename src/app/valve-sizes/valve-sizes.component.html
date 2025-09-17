@@ -7,8 +7,8 @@
         <div *ngFor="let item of valveSizes" class="mb-3">
           
            <div class="card" (click)="getDetails(item)">
-            <div class="card-body">
-            {{ item.Size }} {{ "hier komt of ie past of niet" }}
+            <div class="card-body" style="background-color: lightgrey; cursor: pointer;">
+             Size =   {{ item.Size }}  PPM = {{ PPMSeverity }} 
             </div>
            </div>
          

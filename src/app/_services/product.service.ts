@@ -15,7 +15,7 @@ export class ProductService {
     http = inject(HttpClient);
     valveList = signal<TypeOfValve[]>([]);
     selectedValveTypeId = signal(0);
-    requiredEOA = signal(0);
+    requiredEOA = signal("");
    
 
    

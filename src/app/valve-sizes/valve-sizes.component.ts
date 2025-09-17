@@ -20,21 +20,32 @@ export class ValveSizesComponent implements OnInit {
   proc = inject(ProductService);
   selectedValveTypeId = 0;
   valveSizes: Array<valveSize> = [];
-  requiredEOA = 0.0;
+  requiredEOA: string = "";
+  PPMSeverity: string = "";
+  
 
   ngOnInit(): void {
     this.selectedValveTypeId = this.proc.selectedValveTypeId();
     this.requiredEOA = this.proc.requiredEOA();
     
+    
     // get the sizes for the selected valve type
     this.proc.getListOfValveSizes(this.selectedValveTypeId).subscribe({
       next: response => {
         this.valveSizes = response;
+        // sort this list by Size
+        this.valveSizes = this.valveSizes.sort((a, b) => a.Size - b.Size);
+        // for each valve size calculate the PPM
         for (let vs of this.valveSizes){
-          this.calculatePPM(vs);
+          let help = this.calculatePPM(vs);
+          if (help < 5) { this.PPMSeverity = "Good"; }
+          else if (help >= 5 && help < 10) { this.PPMSeverity = "Moderate"; }
+          else { this.PPMSeverity = "High"; }
+          //
+          vs.PPM = this.calculatePPM(vs).toFixed(2);
+         
         };
-        
-      },
+       },
       error: error => {
         console.log(error);
         this.toastr.error('Problem retrieving valve sizes');
@@ -42,16 +53,11 @@ export class ValveSizesComponent implements OnInit {
     });
   }
 
-  calculatePPM(x: valveSize){
-    // calculate if the valve size is ok for the patient
-    let eoa = x.EOA;
-    let ppm = Math.round((1.1 / eoa) * 10000) / 10; // PPM = 1.1 / EOA * 10000
-    x.PPM = ppm.toString();
-    if (ppm > this.requiredEOA){
-      x.PPM = ppm.toString() + ' (too high)';
-    } else {
-      x.PPM = ppm.toString() + ' (OK)';
-    }
+  calculatePPM(x: valveSize): number{
+    let eoa = parseFloat(this.requiredEOA);
+    let size = x.Size;
+    let ppm = ((size - eoa) / eoa) * 100;
+    return ppm
   }
 
   Cancel(){}

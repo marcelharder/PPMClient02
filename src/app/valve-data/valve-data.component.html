@@ -1,13 +1,13 @@
 <form #valveDataForm="ngForm" (ngSubmit)="onSubmit()">
   <div class="container mt-5">
     <div class="card">
-      <div class="card-header" style="background-color: beige;"><h4>Anulus diameter = 2 cm</h4></div>
+      <div class="card-header" style="background-color: beige;"><h4>Minimal Anulus diameter = {{requiredEOA}} cm</h4></div>
       <div class="card-body">
         <div class="row">
           <div class="col-sm-2">Select Vendor</div>
           <div class="col-sm-10">
             <select class="form-control" name="ven" [(ngModel)]="selectedVendor" id="vend">
-                <option *ngFor="let option of vendors" [ngValue]="option"> {{ option.Description }} </option>
+               <option *ngFor="let option of vendors" [ngValue]="option"> {{ option.Description }} </option>
             </select>
           </div>
         </div>

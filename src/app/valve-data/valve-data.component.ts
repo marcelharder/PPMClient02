@@ -26,7 +26,10 @@ export class ValveDataComponent implements OnInit {
   selectedValveType: DropItem = { Value: 0, Description: 'Choose' };
   selectedVendor: DropItem = { Value: 0, Description: 'Choose' };
   vendors: DropItem[] = []
-  selectedValves: TypeOfValve[] = []
+  selectedValves: TypeOfValve[] = [];
+  requiredEOA: string = "";
+  test: number = 0.0;
+ 
 
 
   ValveTypes: DropItem[] = [
@@ -35,16 +38,26 @@ export class ValveDataComponent implements OnInit {
     { Value: 2, Description: 'Biological' }];
 
   ngOnInit(): void {
+    this.test = parseFloat(this.proc.requiredEOA());
+    this.requiredEOA = this.test.toFixed(2);
+    
     this.loadDrops();
+   
+    this.selectedValveType = this.ValveTypes[0]; // sets first valve type as default
+   
   }
 
   loadDrops() {
     this.drops.getCompanyOptions().subscribe({
-      next: (response) => { this.vendors = response as DropItem[] },
+      next: (response) => { 
+       this.vendors = response as DropItem[];
+       this.vendors = this.vendors.sort((a, b) => a.Description.localeCompare(b.Description));
+       this.vendors.unshift({ Value: 0, Description: 'Choose' });
+       this.selectedVendor = this.vendors[0]; // sets first vendor as default
+   
+      },
       error: (error) => console.log(error)
     });
-    this.vendors = this.vendors.sort((a, b) => a.Description.localeCompare(b.Description));
-    this.vendors.unshift({ Value: 0, Description: 'Choose' });
   }
 
   onSubmit() {

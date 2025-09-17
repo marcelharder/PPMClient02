@@ -13,8 +13,8 @@ export class PatientDataService {
     http = inject(HttpClient);
     
 
-    uploadPatient(Patient: Pd): Observable<Pd> 
-    { return this.http.post<Pd>(this.baseUrl + "requiredEOA", Patient, {responseType: 'text' as 'json'});
+    uploadPatient(Patient: Pd): Observable<string> 
+    { return this.http.post<string>(this.baseUrl + "requiredEOA", Patient, {responseType: 'text' as 'json'});
     }
 
     

@@ -22,18 +22,18 @@ router = inject(Router);
 Patient: Pd = { Age: 1, Gender: "M", Height: 0.0, Weight: 0.0, EOA: 0.0 };
 
 onSubmit() {
+
 this.patientDataService.uploadPatient(this.Patient).subscribe(
   data => {
     //set the result to requiredEOA in the product service
-    this.productService.requiredEOA.set(data.EOA);
-    this.toastr.success('Data submitted successfully!', 'Success');
+    this.productService.requiredEOA.set(data);
     this.router.navigate(['/valve-data']);
 
   },
   error => {
-    console.error('Error:', error);
-    this.toastr.error('Failed to submit data.', 'Error');
-    this.router.navigate(['/valve-data']);
+    console.error('Error:', error.error);
+    this.toastr.error('Error', error.error);
+    
   }
   
 
