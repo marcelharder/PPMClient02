@@ -31,7 +31,6 @@ export class ValveListComponent implements OnInit {
   Cancel() { this.router.navigate(['/valve-data']) }
 
   getDetails(v: TypeOfValve) {
-    debugger;
     this.router.navigate(['/valve-sizes']);
     this.proc.selectedValveTypeId.set(v.ValveTypeId);
   }

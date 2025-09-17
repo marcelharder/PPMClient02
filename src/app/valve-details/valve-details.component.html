@@ -1,0 +1,33 @@
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header" style="background-color: beige;">
+            <h4>Valve Details</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <img [src]="ImagePath" width="250px" height="200px"></div>
+            </div>
+            <!-- <div class="row">
+               <div class="col-sm-6">Size</div>
+               <div class="col-sm-6">{{selectedValveSize.Size}}</div>
+            </div> -->
+             <div class="row">
+                <div class="col-sm-12">Description = {{selectedValve.Description}}</div>
+            </div>
+             <div class="row">
+                <div class="col-sm-12">Size = {{selectedValveSize.Size}}</div>
+            </div>
+              <div class="row">
+                <div class="col-sm-12">EOA = {{selectedValveSize.EOA}}</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">Advice = {{advice}}</div>
+            </div>
+        </div>
+        <div class="card-footer" style="background-color: beige; text-align: center;">
+            <button type="submit" class="btn btn-primary" style="width: 80%;" (click)="onSubmit()">Back</button>
+        </div>
+    </div>
+</div>

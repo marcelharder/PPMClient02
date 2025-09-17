@@ -1,22 +1,37 @@
 <form #valveSizeListForm="ngForm" (ngSubmit)="onSubmit()">
   <div class="container mt-5">
     <div class="card">
-      <div class="card-header" style="background-color: beige;"><h4>Available Valve Sizes</h4></div>
+      <div class="card-header" style="background-color: beige;">
+        <h4>Available Valve Sizes</h4>
+      </div>
       <div class="card-body">
 
         <div *ngFor="let item of valveSizes" class="mb-3">
-          
-           <div class="card" (click)="getDetails(item)">
-            <div class="card-body" style="background-color: lightgrey; cursor: pointer;">
-             Size =   {{ item.Size }}  PPM = {{ PPMSeverity }} 
+
+          <div class="card" (click)="getDetails(item)">
+
+            <div class="card-body" *ngIf="severePPM(item.PPM)" style="background-color:orangered;" (click)="getDetails(item)" >
+              <span >
+                Size = {{ item.Size }} This prosthesis will cause severe PPM
+              </span>
             </div>
-           </div>
-         
+            <div class="card-body" *ngIf="moderatePPM(item.PPM)" style="background-color: gold;" (click)="getDetails(item)">
+              <span >
+                Size = {{ item.Size }} This prosthesis will cause moderate PPM
+              </span>
+            </div>
+            <div class="card-body" *ngIf="nonePPM(item.PPM)" style="background-color: lightgreen;" (click)="getDetails(item)">
+              <span >
+                Size = {{ item.Size }} This prosthesis will cause no PPM
+              </span>
+            </div>
+          </div>
+
         </div>
-       
-        <button type="submit" class="btn btn-primary" (click)="Cancel()">Back</button>
+
+        <button type="submit" class="btn btn-primary" >Back</button>
       </div>
       <div class="card-footer"></div>
-</div>
-</div>
+    </div>
+  </div>
 </form>
