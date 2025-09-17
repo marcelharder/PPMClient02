@@ -3,4 +3,5 @@ export interface Pd {
     Gender: string;     // "M" or "F"
     Height: number;     // meters
     Weight: number;     // kg
+    EOA: number;       // cm2
 }

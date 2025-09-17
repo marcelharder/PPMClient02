@@ -10,14 +10,15 @@ import { valveSize } from '../_models/valveSize';
     providedIn: 'root'
 })
 export class ProductService {
+  
     private baseUrl = environment.apiUrl;
     http = inject(HttpClient);
     valveList = signal<TypeOfValve[]>([]);
     selectedValveTypeId = signal(0);
+    requiredEOA = signal(0);
    
 
-
-
+   
     getProductsByVTP(v: number, t: string, p: string): Observable<TypeOfValve[]> {
         return this.http.get<TypeOfValve[]>(this.baseUrl + 'productsByVTP/' + v + '/' + t + '/' + p);
     }

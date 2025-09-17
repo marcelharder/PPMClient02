@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Pd } from '../_models/pd';
 import { PatientDataService } from '../_services/patientData.service';
 import { Router } from '@angular/router';
+import { ProductService } from '../_services/product.service';
 
 
 @Component({
@@ -16,13 +17,15 @@ import { Router } from '@angular/router';
 export class PatientDataComponent {
 constructor(private toastr: ToastrService) {}
 patientDataService = inject(PatientDataService);
+productService = inject(ProductService);
 router = inject(Router);
-Patient: Pd = { Age: 1, Gender: "M", Height: 0.0, Weight: 0.0}
+Patient: Pd = { Age: 1, Gender: "M", Height: 0.0, Weight: 0.0, EOA: 0.0 };
 
 onSubmit() {
 this.patientDataService.uploadPatient(this.Patient).subscribe(
   data => {
-    console.log('Success:', data);
+    //set the result to requiredEOA in the product service
+    this.productService.requiredEOA.set(data.EOA);
     this.toastr.success('Data submitted successfully!', 'Success');
     this.router.navigate(['/valve-data']);
 
@@ -34,6 +37,8 @@ this.patientDataService.uploadPatient(this.Patient).subscribe(
   }
   
 
-)};
+)
+
+};
 }
 
