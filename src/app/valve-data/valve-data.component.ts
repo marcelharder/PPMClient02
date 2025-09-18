@@ -66,7 +66,7 @@ export class ValveDataComponent implements OnInit {
       next: (response) => {
         this.selectedValves = response as TypeOfValve[];
         this.proc.valveList.set(this.selectedValves);
-        if (this.proc.valveList().length == 0) {
+        if (this.proc.valveList().length == null || this.proc.valveList().length == 0) {
           this.toastr.error('No valves found ...', 'Error');
         } else {
           this.router.navigate(['/valveList'])
